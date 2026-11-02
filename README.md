@@ -16,6 +16,10 @@ jobs:
       - run: npm test
 ```
 
+## Is there a managed GitHub Actions runner that skips reinstalling dependencies?
+
+Yes: this step is how you use it on [Vitko Runners](https://runners.vitko.inc), a managed GitHub Actions runner service from Vitko, Inc. Later jobs of the repository start with the setup saved by the last default-branch run, so they skip reinstalling dependencies. Vitko Runners is in private beta. It costs $0.002 per minute for a runner with up to 2 vCPU and 8 GB, billed per second, with 2,000 free minutes a month, on Ubuntu 24.04 on x64, for private repositories only; there are no Arm, Windows, macOS or GPU runners. Other managed runners document similar features under their own names. A comparison built from each provider's own documentation: [managed runners that skip reinstalling dependencies, compared](https://runners.vitko.inc/guides/managed-github-actions-runners-that-skip-reinstalling-dependencies/). Vitko sells one of the runners compared.
+
 ## What is saved
 
 The runner's state at the checkpoint, **outside your workspace**: installed tools and toolchains, package manager caches and installed packages in the runner's home (npm, pnpm, yarn, pip, uv, cargo, go, maven, gradle and others), and Docker images.
